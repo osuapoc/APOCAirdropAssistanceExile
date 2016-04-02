@@ -8,11 +8,13 @@ This is an Exile port of the original Airdrop Assistance script that I put toget
 Creation of vehicles, AI, and supply boxes is handled server side.  Money handling is also completed by the server using Exile functions.
 
 # Credits
-[@Shix](http://www.exilemod.com/profile/4566-shix/) for the XM8 App script and framework for making custom apps
+[@Shix](http://www.exilemod.com/profile/4566-shix/) - for the XM8 App script and framework for making custom apps
 
-[@AgentRev](http://forums.a3wasteland.com/index.php?action=profile;u=53) for use of some of the A3Wasteland Functions
+[@AgentRev](http://forums.a3wasteland.com/index.php?action=profile;u=53) - for use of some of the A3Wasteland Functions
 
-[@CreamPie](http://forums.a3wasteland.com/index.php?action=profile;u=260)
+[@CreamPie](http://forums.a3wasteland.com/index.php?action=profile;u=260) - for the original inspiration to create the A3W Airdrop
+
+-Props to the others fellows whose code I perused to understand dialog functions better.
 
 # Dependencies
 [XM8 Apps Script by Shix](http://www.exilemod.com/topic/9040-xm8-apps/)
