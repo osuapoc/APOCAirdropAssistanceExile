@@ -1,5 +1,5 @@
 // ******************************************************************************************
-// * This project is licensed under the GNU Affero GPL v3. Copyright © 2014 A3Wasteland.com *
+// * This script is licensed under the GNU Lesser GPL v3. Copyright © 2016 A3Wasteland.com *
 // ******************************************************************************************
 //	@file Version: 1.1
 //	@file Name: processItems.sqf

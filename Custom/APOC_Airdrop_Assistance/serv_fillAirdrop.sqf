@@ -1,5 +1,5 @@
 // ******************************************************************************************
-// * This project is licensed under the GNU Affero GPL v3.
+// * This script is licensed under the GNU Lesser GPL v3.
 // ******************************************************************************************
 // Based on the box-filling function from A3Wasteland (AgentRev)
 // Reconfigurated to work for exile and all that jazz - Apoc

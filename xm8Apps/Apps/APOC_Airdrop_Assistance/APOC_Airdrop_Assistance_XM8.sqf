@@ -8,7 +8,7 @@ https://community.bistudio.com/wiki/ctrlSetPosition
 */
 
 // ******************************************************************************************
-// * This project is licensed under the GNU Affero GPL v3.
+// * This script is licensed under the GNU Lesser GPL v3.
 // ******************************************************************************************
 // Apoc's Airdrop Assistance
 // https://github.com/osuapoc
