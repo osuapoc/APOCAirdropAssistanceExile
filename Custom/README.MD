@@ -18,7 +18,7 @@ Creation of vehicles, AI, and supply boxes is handled server side.  Money handli
 # Installation
 This is where it gets more complicated than other XM8 Apps...
 
-1) You'll need to add the server function to your Remote whitelisting
+1) You'll need to add the server function to your CfgRemoteExec whitelisting
 	-See the CfgRemoteExec.hpp if you're using Infistar
 
 2) Add the line within the init.sqf to your init.sqf for your server
