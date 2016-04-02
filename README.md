@@ -14,7 +14,10 @@ Creation of vehicles, AI, and supply boxes is handled server side.  Money handli
 
 [@CreamPie](http://forums.a3wasteland.com/index.php?action=profile;u=260) - for the original inspiration to create the A3W Airdrop
 
+[@Brun](http://www.exilemod.com/topic/11296-xm8-app-brama-cookbook-updated/) - The Brama Cookbook provided me with spacing and such for the app layout
+
 -Props to the others fellows whose code I perused to understand dialog functions better.
+-If I've forgotten anyone specific, speak up!
 
 # Dependencies
 [XM8 Apps Script by Shix](http://www.exilemod.com/topic/9040-xm8-apps/)
