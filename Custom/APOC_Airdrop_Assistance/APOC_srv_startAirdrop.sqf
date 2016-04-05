@@ -10,7 +10,7 @@
 if !(isDedicated) exitWith{};
 
 
-private ["_DropType","_DropSelection","_player", "_DropDesc","_DropPrice","_DropType"]; //Variables coming from APOC_Airdrop_Assistance_XM8.sqf
+private ["_DropType","_DropSelection","_player", "_DropDesc","_DropPrice","_DropType","_object"]; //Variables coming from APOC_Airdrop_Assistance_XM8.sqf
 _DropType 			 	= _this select 0;
 _DropSelection		 	= _this select 1;
 _player 				= _this select 2;
