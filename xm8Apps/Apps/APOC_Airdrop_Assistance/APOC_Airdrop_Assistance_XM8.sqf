@@ -70,7 +70,7 @@ _btnOrderDrop ctrlSetEventHandler ["ButtonClick", "_this call fn_OrderDrop;"];
     (_display displayCtrl 6601) lbAdd Format["%1",_x];
     (_display displayCtrl 6601) lbSetData [_forEachIndex,_x];
   } foreach _DropCategories;
-
+(_display displayCtrl 6601) lbSetCurSel 0; //Try and select the first value from the newly populated listbox, should force the downstream listbox to populate as well, due to EH firing
 
 
 //Created the go back button and add the button click event handeler to it
@@ -130,6 +130,7 @@ fn_DropCategory_Load = {
       } forEach ((APOC_AA_Drops select _i) select 1);
     };
   };
+  (_display displayCtrl 6602) lbSetCurSel 0; //Selection first option within this listbox, to prevent purchasing of non-existent airdrop
 };
 
 fn_DropContents_Load = {
