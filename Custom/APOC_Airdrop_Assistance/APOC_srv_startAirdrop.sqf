@@ -119,22 +119,42 @@ While {true} do {
 	if (currentWaypoint _grp >= 2) exitWith {};  //Completed Drop Waypoint
 };
 
-// Let's handle the money after this tricky spot - This way players won't be charged for non-delivered goods!
-_playerMoney = _player getVariable ["ExileMoney", 0];
-		if (_DropPrice > _playerMoney) exitWith{
-			{ _x setDamage 1; } forEach units _grp;
-			_heli setDamage 1; //BOOM
-			_object setDamage 1; //BOOM BOOM
-			diag_log format ["Apoc's Airdrop Assistance - Player Account Too Low, Drop Aborted. %1. Bank:$%2. Cost: $%3", _player, _playerMoney, _DropPrice];  //A little log love to mark the Scallywag who tried to cheat the valiant pilot
-			};  //Thought you'd be tricky and not pay, eh?
 
-//Server Side Money handling
-	_balance = _player getVariable ["ExileMoney", 0];
-	_newBalance = _balance - _DropPrice;
-	_player setVariable ["ExileMoney", _newBalance, true];
-	format["setAccountMoney:%1:%2", _newBalance, (getPlayerUID _player)] call ExileServer_system_database_query_fireAndForget;
-	//Dealing with sending network messages into the ExileClient madness (Chunks of this from base Exile client code)
-	_player call ExileServer_object_player_sendStatsUpdate;	//Yes, I know this is a gross misapplication
+if (APOC_AdvancedBanking) then {
+    // Let's handle the money after this tricky spot - This way players won't be charged for non-delivered goods!
+    _playerMoney = _player getVariable ["ExilePurse", 0];
+    if (_DropPrice > _playerMoney) exitWith
+    {
+        { _x setDamage 1; } forEach units _grp;
+        _heli setDamage 1; //BOOM
+        _object setDamage 1; //BOOM BOOM
+        diag_log format ["Apoc's Airdrop Assistance - Player Account Too Low, Drop Aborted. %1. Bank:$%2. Cost: $%3", _player, _playerMoney, _DropPrice];  //A little log love to mark the Scallywag who tried to cheat the valiant pilot
+    };  //Thought you'd be tricky and not pay, eh?
+
+    //Server Side Money handling
+    _newBalance = _playerMoney - _DropPrice;
+    _player setVariable ["ExilePurse", _newBalance];
+    format["updateWallet:%1:%2", _newBalance, (getPlayerUID _player)] call ExileServer_system_database_query_fireAndForget;
+    [_player,"updateWalletStats",[str(_newBalance)]] call ExileServer_system_network_send_to;
+} else {
+    // Let's handle the money after this tricky spot - This way players won't be charged for non-delivered goods!
+    _playerMoney = _player getVariable ["ExileMoney", 0];
+    if (_DropPrice > _playerMoney) exitWith
+    {
+        { _x setDamage 1; } forEach units _grp;
+        _heli setDamage 1; //BOOM
+        _object setDamage 1; //BOOM BOOM
+        diag_log format ["Apoc's Airdrop Assistance - Player Account Too Low, Drop Aborted. %1. Bank:$%2. Cost: $%3", _player, _playerMoney, _DropPrice];  //A little log love to mark the Scallywag who tried to cheat the valiant pilot
+    };  //Thought you'd be tricky and not pay, eh?
+
+    //Server Side Money handling
+    _newBalance = _playerMoney - _DropPrice;
+    _player setVariable ["ExileMoney", _newBalance];
+    format["setAccountMoney:%1:%2", _newBalance, (getPlayerUID _player)] call ExileServer_system_database_query_fireAndForget;
+    //Dealing with sending network messages into the ExileClient madness (Chunks of this from base Exile client code)
+    _player call ExileServer_object_player_sendStatsUpdate;	//Yes, I know this is a gross misapplication
+}
+
 
 
 //  Now on to the fun stuff:

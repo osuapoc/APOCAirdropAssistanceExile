@@ -6,6 +6,9 @@
 //Author: Apoc
 // https://github.com/osuapoc
 
+// Advanced Banking support. Change false to true if you run Advanced Banking on your server.
+APOC_AdvancedBanking = false;
+
 APOC_AA_coolDownTime = 60; //Expressed in sec
 
 APOC_AA_Drops =[
