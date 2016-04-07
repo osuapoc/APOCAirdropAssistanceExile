@@ -184,7 +184,7 @@ fn_OrderDrop = {
   _Drop = "";
   _DropID = "";
   _DropDesc = "";
-  _DropPrice  = 0;
+  _DropPrice  = "";
 
   //Very convoluted system to extract the price from the arrays
     for "_i" from 0 to (count APOC_AA_Drops)-1 do {
@@ -205,6 +205,12 @@ fn_OrderDrop = {
         } forEach ((APOC_AA_Drops select _i) select 1);
       };
     };
+
+    //Dive out of the tree if an empty order is selected (or not)
+    If (_DropType = "") exitWith {diag_log "AAA - _DropType Not Specified, cannot place order";};
+    If (_DropDesc = "") exitWith {diag_log "AAA - _DropDesc Not Specified, cannot place order";};
+    If (_DropPrice = "") exitWith {diag_log "AAA - _DropPrice Not Specified, cannot place order";};
+
     diag_log format["AAA - _DropDesc = %1, _DropPrice = %2, _DropType = %3",_DropDesc,_DropPrice, _DropType];
     /////////////  Cooldown Timer ////////////////////////
       if (!isNil "APOC_AA_lastUsedTime") then
