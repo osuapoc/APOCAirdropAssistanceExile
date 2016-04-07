@@ -120,9 +120,9 @@ While {true} do {
 };
 
 
-if (APOC_AdvancedBanking) then {
+if (APOC_AA_AdvancedBanking) then {
     // Let's handle the money after this tricky spot - This way players won't be charged for non-delivered goods!
-    _playerMoney = _player getVariable ["ExilePurse", 0];
+    _playerMoney = _player getVariable ["ExileBank", 0];
     if (_DropPrice > _playerMoney) exitWith
     {
         { _x setDamage 1; } forEach units _grp;
@@ -133,9 +133,9 @@ if (APOC_AdvancedBanking) then {
 
     //Server Side Money handling
     _newBalance = _playerMoney - _DropPrice;
-    _player setVariable ["ExilePurse", _newBalance];
-    format["updateWallet:%1:%2", _newBalance, (getPlayerUID _player)] call ExileServer_system_database_query_fireAndForget;
-    [_player,"updateWalletStats",[str(_newBalance)]] call ExileServer_system_network_send_to;
+    _player setVariable ["ExileBank", _newBalance];
+    format["updateBank:%1:%2", _newBalance, (getPlayerUID _player)] call ExileServer_system_database_query_fireAndForget;
+    [_player,"updateBankStats",[str(_newBalance)]] call ExileServer_system_network_send_to;
 } else {
     // Let's handle the money after this tricky spot - This way players won't be charged for non-delivered goods!
     _playerMoney = _player getVariable ["ExileMoney", 0];
