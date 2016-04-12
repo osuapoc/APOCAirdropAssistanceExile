@@ -41,7 +41,7 @@ _cbDropCategories ctrlSetEventHandler ["LBSelChanged", "_this call fn_DropCatego
 _cbDropCategories ctrlCommit 0;
 
 _lbDropList = _display ctrlCreate ["RscListBox", 6602];
-_lbDropList ctrlSetPosition [0.085, 0.24, 0.38, 0.57];
+_lbDropList ctrlSetPosition [0.085, 0.24, 0.38, 0.28];
 _lbDropList ctrlSetEventHandler ["LBSelChanged", "_this call fn_DropContents_Load"];
 _lbDropList ctrlCommit 0;
 
