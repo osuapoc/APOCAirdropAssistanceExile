@@ -130,7 +130,6 @@ fn_DropCategory_Load = {
       } forEach ((APOC_AA_Drops select _i) select 1);
     };
   };
-  (_display displayCtrl 6602) lbSetCurSel 0; //Selection first option within this listbox, to prevent purchasing of non-existent airdrop
 };
 
 fn_DropContents_Load = {
@@ -174,7 +173,7 @@ fn_DropContents_Load = {
 
 fn_OrderDrop = {
   private ["_DropDesc", "_DropPrice", "_DropType", "_CategorySelection", "_DropSelection"];
-  diag_log format["AAA - fn_OrderDrop Called"];
+  //diag_log format["AAA - fn_OrderDrop Called"];
   _display = uiNameSpace getVariable ["RscExileXM8", displayNull];
   _ctrl = (_display displayCtrl 6601);
   _CategorySelection = _ctrl lbData (lbCurSel _ctrl);
@@ -192,12 +191,12 @@ fn_OrderDrop = {
       _Category = (APOC_AA_Drops select _i) select 0; //Grabs the string of the drop category ie: "Vehicles" or "Supplies" or "Lawn Gnomes"
       if (_Category == _CategorySelection) then
       {
-        diag_log format["AAA - _Category line 179 = %1",_Category];
+        //diag_log format["AAA - _Category line 179 = %1",_Category];
         {
           _Selection = _x select 1;
           if (_DropSelection == _Selection) then
           {
-            diag_log format["AAA - _Selection line 184 = %1",_Selection];
+            //diag_log format["AAA - _Selection line 184 = %1",_Selection];
             _DropDesc = _x select 0;
             _DropPrice = _x select 2;
             _DropType = _x select 3;
@@ -206,17 +205,17 @@ fn_OrderDrop = {
         } forEach ((APOC_AA_Drops select _i) select 1);
       };
     };
-
+    //diag_log format ["AAA - _DropPrice = %1", _DropPrice];
     //Dive out of the tree if an empty order is selected (or not)
-    If (_DropType = "") exitWith {diag_log "AAA - _DropType Not Specified, cannot place order";};
-    If (_DropDesc = "") exitWith {diag_log "AAA - _DropDesc Not Specified, cannot place order";};
-    If (_DropPrice = "") exitWith {diag_log "AAA - _DropPrice Not Specified, cannot place order";};
+    If (isNil "_DropType") exitWith {diag_log "AAA - _DropType Not Specified, cannot place order";};
+    If (isNil "_DropDesc") exitWith {diag_log "AAA - _DropDesc Not Specified, cannot place order";};
+    If (isNil "_DropPrice") exitWith {diag_log "AAA - _DropPrice Not Specified, cannot place order";};
 
-    diag_log format["AAA - _DropDesc = %1, _DropPrice = %2, _DropType = %3",_DropDesc,_DropPrice, _DropType];
+    //diag_log format["AAA - _DropDesc = %1, _DropPrice = %2, _DropType = %3",_DropDesc,_DropPrice, _DropType];
     /////////////  Cooldown Timer ////////////////////////
       if (!isNil "APOC_AA_lastUsedTime") then
       {
-      diag_log format ["AAA - Last Used Time: %1; CoolDown Set At: %2; Current Time: %3",APOC_AA_lastUsedTime, APOC_AA_coolDownTime, diag_tickTime];
+      //diag_log format ["AAA - Last Used Time: %1; CoolDown Set At: %2; Current Time: %3",APOC_AA_lastUsedTime, APOC_AA_coolDownTime, diag_tickTime];
       _timeRemainingReuse = APOC_AA_coolDownTime - (diag_tickTime - APOC_AA_lastUsedTime); //time is still in s
       if ((_timeRemainingReuse) > 0) then
         {
@@ -226,7 +225,7 @@ fn_OrderDrop = {
           breakOut "APOC_Airdrop_Assistance_XM8";
         };
       };
-      diag_log format["AAA - Made it to line 203!, _DropPrice %1",_DropPrice];
+      //diag_log format["AAA - Made it to line 203!, _DropPrice %1",_DropPrice];
     ////////////////////////////////////////////////////////
 
     _playerMoney = ExileClientPlayerMoney;
