@@ -79,7 +79,7 @@ _GoBackBtn = _display ctrlCreate ["RscButtonMenu", 1116];
 _GoBackBtn ctrlSetPosition [(32 - 3) * (0.025),(20 - 2) * (0.04),6 * (0.025),1 * (0.04)];
 _GoBackBtn ctrlCommit 0;
 _GoBackBtn ctrlSetText "Go Back";
-_GoBackBtn ctrlSetEventHandler ["ButtonClick", "[] spawn fnc_goBack"];
+_GoBackBtn ctrlSetEventHandler ["ButtonClick", "[] call fnc_goBack"];
 
 fnc_goBack = {
   _display = uiNameSpace getVariable ["RscExileXM8", displayNull];
