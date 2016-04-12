@@ -227,8 +227,11 @@ fn_OrderDrop = {
       };
       //diag_log format["AAA - Made it to line 203!, _DropPrice %1",_DropPrice];
     ////////////////////////////////////////////////////////
-
-    _playerMoney = ExileClientPlayerMoney;
+    if (APOC_AA_AdvancedBanking) then {
+        _playerMoney = player getVariable ["ExileBank", 0];
+    } else {
+        _playerMoney = ExileClientPlayerMoney;
+    };
     if (_DropPrice > _playerMoney) exitWith
       {
         format["You don't have enough money in the bank to request this airdrop!"];
