@@ -39,7 +39,6 @@ hint format ["Well we've made it this far! %1, %2, %3,",_player,_DropType,_DropS
  _center = createCenter civilian;
 _grp = createGroup civilian;
 if(isNil("_grp2"))then{_grp2 = createGroup civilian;}else{_grp2 = _grp2;};
-_flyHeight = 350;
 _dropSpot = [(position _player select 0),(position _player select 1),_flyHeight];
 _heliDirection = random 360;
 _flyHeight = 200;  //Distance from ground that heli will fly at
@@ -49,8 +48,6 @@ _spos=[(_dropSpot select 0) - (sin _heliDirection) * _heliStartDistance, (_dropS
 diag_log format ["AAA - Heli Spawned at %1", _spos];
 _heli = createVehicle [_heliType, _spos, [], 0, "FLY"];
 _heli allowDamage false;
-//_heli setVariable ["R3F_LOG_disabled", true, true];
-//[_heli] call vehicleSetup;
 
 //So, apppppparently the heli needs a pilot.  Let's grab one from the BIS ranks
 _crew = _grp createUnit ["O_recon_F", _spos, [], 0, "NONE"];
@@ -85,9 +82,6 @@ _object = switch (_DropType) do {
 	{
 		_objectSpawnPos = [(_spos select 0), (_spos select 1), (_spos select 2) - 5];
 		_object = [_DropSelection, _objectSpawnPos, 0, FALSE] call ExileServer_object_vehicle_createNonPersistentVehicle;
-
-		diag_log format ["Apoc's Airdrop Assistance - Object Spawned at %1", position _object];
-
 		_object attachTo [_heli, [0,0,-5]]; //Attach Object to the heli
 		_object
 	};
@@ -109,6 +103,7 @@ _object = switch (_DropType) do {
 		_object
 		};
 };
+
 _object allowDamage false; //Let's not let these things get destroyed on the way there, shall we?
 
 diag_log format ["Apoc's Airdrop Assistance - Object at %1", position _object];  //A little log love to confirm the location of this new creature
