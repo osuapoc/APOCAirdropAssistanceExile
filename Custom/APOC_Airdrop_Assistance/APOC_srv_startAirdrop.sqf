@@ -133,7 +133,11 @@ if (APOC_AA_AdvancedBanking) then {
     [_player,"updateBankStats",[str(_newBalance)]] call ExileServer_system_network_send_to;
 } else {
     // Let's handle the money after this tricky spot - This way players won't be charged for non-delivered goods!
-    _playerMoney = _player getVariable ["ExileMoney", 0];
+    if (APOC_AA_UseExileLockerFunds) then {
+        _playerMoney = player getVariable ["ExileLocker",0];
+    } else {
+        _playerMoney = player getVariable ["ExileMoney", 0];
+    };
     if (_DropPrice > _playerMoney) exitWith
     {
         { _x setDamage 1; } forEach units _grp;
@@ -144,13 +148,16 @@ if (APOC_AA_AdvancedBanking) then {
 
     //Server Side Money handling
     _newBalance = _playerMoney - _DropPrice;
-    _player setVariable ["ExileMoney", _newBalance];
-    format["setAccountMoney:%1:%2", _newBalance, (getPlayerUID _player)] call ExileServer_system_database_query_fireAndForget;
+    if (APOC_AA_UseExileLockerFunds) then {
+        _player setVariable ["ExileLocker", _newBalance];
+        format["updateLocker:%1:%2", _newBalance, (getPlayerUID _player)] call ExileServer_system_database_query_fireAndForget;
+    } else {
+        _player setVariable ["ExileMoney", _newBalance];
+        format["setAccountMoney:%1:%2", _newBalance, (getPlayerUID _player)] call ExileServer_system_database_query_fireAndForget;
+    };
     //Dealing with sending network messages into the ExileClient madness (Chunks of this from base Exile client code)
     _player call ExileServer_object_player_sendStatsUpdate;	//Yes, I know this is a gross misapplication
 };
-
-
 
 //  Now on to the fun stuff:
 	diag_log format ["Apoc's Airdrop Assistance - Object at %1, Detach Up Next", position _object];  //A little log love to confirm the location of this new creature
