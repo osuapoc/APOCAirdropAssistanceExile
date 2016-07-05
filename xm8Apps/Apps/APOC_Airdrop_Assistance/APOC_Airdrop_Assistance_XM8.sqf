@@ -228,8 +228,12 @@ fn_OrderDrop = {
       };
       //diag_log format["AAA - Made it to line 203!, _DropPrice %1",_DropPrice];
     ////////////////////////////////////////////////////////
-
-    _playerMoney = player getVariable ["ExileMoney", 0];
+    if (APOC_AA_UseExileLockerFunds) then {
+        _playerMoney = player getVariable ["ExileLocker",0];
+    } else {
+        _playerMoney = player getVariable ["ExileMoney", 0];
+    };
+    
     if (_DropPrice > _playerMoney) exitWith
       {
 
