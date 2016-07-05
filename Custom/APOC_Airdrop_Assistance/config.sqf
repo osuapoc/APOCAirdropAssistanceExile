@@ -8,6 +8,7 @@
 
 // Advanced Banking support. Change false to true if you run Advanced Banking on your server.
 APOC_AA_AdvancedBanking = false;
+APOC_AA_UseExileLockerFunds = false;
 
 APOC_AA_coolDownTime = 60; //Expressed in sec
 
