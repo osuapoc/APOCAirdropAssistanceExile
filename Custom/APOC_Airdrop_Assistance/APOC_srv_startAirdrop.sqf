@@ -134,9 +134,9 @@ if (APOC_AA_AdvancedBanking) then {
 } else {
     // Let's handle the money after this tricky spot - This way players won't be charged for non-delivered goods!
     if (APOC_AA_UseExileLockerFunds) then {
-        _playerMoney = player getVariable ["ExileLocker",0];
+        _playerMoney = _player getVariable ["ExileLocker",0];
     } else {
-        _playerMoney = player getVariable ["ExileMoney", 0];
+        _playerMoney = _player getVariable ["ExileMoney", 0];
     };
     if (_DropPrice > _playerMoney) exitWith
     {
