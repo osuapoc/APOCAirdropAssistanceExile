@@ -211,7 +211,7 @@ fn_OrderDrop = {
     If (isNil "_DropDesc") exitWith {diag_log "AAA - _DropDesc Not Specified, cannot place order";};
     If (isNil "_DropPrice") exitWith {diag_log "AAA - _DropPrice Not Specified, cannot place order";};
 
-    diag_log format["AAA - _DropDesc = %1, _DropPrice = %2, _DropType = %3",_DropDesc,_DropPrice, _DropType];
+    //diag_log format["AAA - _DropDesc = %1, _DropPrice = %2, _DropType = %3",_DropDesc,_DropPrice, _DropType];
     /////////////  Cooldown Timer ////////////////////////
       if (!isNil "APOC_AA_lastUsedTime") then
       {
@@ -226,7 +226,7 @@ fn_OrderDrop = {
           breakOut "APOC_Airdrop_Assistance_XM8";
         };
       };
-      diag_log format["AAA - Made it to line 203!, _DropPrice %1",_DropPrice];
+      //diag_log format["AAA - Made it to line 203!, _DropPrice %1",_DropPrice];
     ////////////////////////////////////////////////////////
     _playerMoney = 0;
     if (APOC_AA_UseExileLockerFunds) then {
@@ -234,7 +234,7 @@ fn_OrderDrop = {
     } else {
         _playerMoney = player getVariable ["ExileMoney", 0];
     };
-    diag_log format["AAA - Made it to line 237!, _DropPrice %1, _playerMoney %2",_DropPrice, _playerMoney];
+    //diag_log format["AAA - Made it to line 237!, _DropPrice %1, _playerMoney %2",_DropPrice, _playerMoney];
     if (_DropPrice > _playerMoney) exitWith
       {
 
