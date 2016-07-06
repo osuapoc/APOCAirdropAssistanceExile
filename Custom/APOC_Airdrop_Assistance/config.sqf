@@ -16,7 +16,7 @@ APOC_AA_Drops =[
 /*
 	["Category Name",
 		[
-			["Text displayed to player",	"Name of vehicle or drop box",	cost, "vehicle or supply (use nothing but these two!"]  //This is an array, use commas between, DUH!
+			["Text displayed to player",	"Name of vehicle or drop box",	cost, "vehicle or supply (use nothing but these two!)", respectThreshold]  //This is an array, use commas between, DUH!
 		] //If something breaks with your list of drops, you've likely messed up the nested arrays.
 	]
 */
@@ -24,24 +24,24 @@ APOC_AA_Drops =[
 //Also, presently, these are NON-Persistant vehicles.  Meaning that they will not last over a restart.  Keep that in mind with prices.  Later updates I'll set that up, with pin code entry.
 	["Vehicles",
 		[
-			["Quadbike", 		"Exile_Bike_QuadBike_Black", 			10000, 	"vehicle"],
-			["Offroad", 		"Exile_Car_Offroad_Red",				20000, 	"vehicle"],
-			["Strider", 		"Exile_Car_Strider", 					30000, 	"vehicle"]
+			["Quadbike", 		"Exile_Bike_QuadBike_Black", 			10000, 	"vehicle", 1000],
+			["Offroad", 		"Exile_Car_Offroad_Red",			20000, 	"vehicle", 1000],
+			["Strider", 		"Exile_Car_Strider", 				30000, 	"vehicle", 1000]
 		]
 	],
 
 	["Weapons",
 		[
-			["Sniper Rifles", 		"airdrop_Snipers", 				50000, "supply"],
-			["DLC Rifles", 			"airdrop_DLC_Rifles", 			45000, "supply"],
-			["DLC LMGs", 			"airdrop_DLC_LMGs", 			45000, "supply"]
+			["Sniper Rifles", 		"airdrop_Snipers", 			50000, "supply", 1000],
+			["DLC Rifles", 			"airdrop_DLC_Rifles", 			45000, "supply", 1000],
+			["DLC LMGs", 			"airdrop_DLC_LMGs", 			45000, "supply", 1000]
 		]
 	],
 
 	["Supplies",
 		[
-			["Food (small)",		"airdrop_FoodSmall",			1000, "supply"],
-			["Food (large)",		"airdrop_FoodLarge",			5000, "supply"]
+			["Food (small)",		"airdrop_FoodSmall",			1000, "supply", 1000],
+			["Food (large)",		"airdrop_FoodLarge",			5000, "supply", 1000]
 		]
 	]
 ];
