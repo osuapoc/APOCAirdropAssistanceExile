@@ -211,7 +211,7 @@ fn_OrderDrop = {
     If (isNil "_DropDesc") exitWith {diag_log "AAA - _DropDesc Not Specified, cannot place order";};
     If (isNil "_DropPrice") exitWith {diag_log "AAA - _DropPrice Not Specified, cannot place order";};
 
-    //diag_log format["AAA - _DropDesc = %1, _DropPrice = %2, _DropType = %3",_DropDesc,_DropPrice, _DropType];
+    diag_log format["AAA - _DropDesc = %1, _DropPrice = %2, _DropType = %3",_DropDesc,_DropPrice, _DropType];
     /////////////  Cooldown Timer ////////////////////////
       if (!isNil "APOC_AA_lastUsedTime") then
       {
@@ -226,14 +226,15 @@ fn_OrderDrop = {
           breakOut "APOC_Airdrop_Assistance_XM8";
         };
       };
-      //diag_log format["AAA - Made it to line 203!, _DropPrice %1",_DropPrice];
+      diag_log format["AAA - Made it to line 203!, _DropPrice %1",_DropPrice];
     ////////////////////////////////////////////////////////
+    _playerMoney = 0;
     if (APOC_AA_UseExileLockerFunds) then {
         _playerMoney = player getVariable ["ExileLocker",0];
     } else {
         _playerMoney = player getVariable ["ExileMoney", 0];
     };
-    
+    diag_log format["AAA - Made it to line 237!, _DropPrice %1, _playerMoney %2",_DropPrice, _playerMoney];
     if (_DropPrice > _playerMoney) exitWith
       {
 
@@ -251,7 +252,7 @@ fn_OrderDrop = {
     // Give some feedback that the pilot has heard the call to action!
     _NotificationText = format ["Your airdrop is on its way!  ETA ~90 seconds!"]; //You could put a variable here in case you change the spawn in distance
 
-    [["SuccessTitleandText"],["Airdrop Success!",_NotificationText]] call ExileClient_gui_toaster_addTemplateToast;
+    ["SuccessTitleandText",["Airdrop Success!",_NotificationText]] call ExileClient_gui_toaster_addTemplateToast;
     playSound3D ["a3\sounds_f\sfx\radio\ambient_radio17.wss",player,false,getPosASL player,1,1,25]; // Thanks Lodac (TOParma!)
     //TO THE SERVER FUNCTION!
 };

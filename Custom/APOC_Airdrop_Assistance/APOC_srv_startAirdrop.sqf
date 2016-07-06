@@ -10,7 +10,7 @@
 if !(isDedicated) exitWith{};
 
 
-private ["_DropType","_DropSelection","_player", "_DropDesc","_DropPrice","_DropType","_object"]; //Variables coming from APOC_Airdrop_Assistance_XM8.sqf
+private ["_DropType","_DropSelection","_player", "_DropDesc","_DropPrice","_DropType","_object","_playerMoney"]; //Variables coming from APOC_Airdrop_Assistance_XM8.sqf
 _DropType 			 	= _this select 0;
 _DropSelection		 	= _this select 1;
 _player 				= _this select 2;
@@ -39,9 +39,9 @@ hint format ["Well we've made it this far! %1, %2, %3,",_player,_DropType,_DropS
  _center = createCenter civilian;
 _grp = createGroup civilian;
 if(isNil("_grp2"))then{_grp2 = createGroup civilian;}else{_grp2 = _grp2;};
+_flyHeight = 200;  //Distance from ground that heli will fly at
 _dropSpot = [(position _player select 0),(position _player select 1),_flyHeight];
 _heliDirection = random 360;
-_flyHeight = 200;  //Distance from ground that heli will fly at
 _heliStartDistance = 5000;
 _spos=[(_dropSpot select 0) - (sin _heliDirection) * _heliStartDistance, (_dropSpot select 1) - (cos _heliDirection) * _heliStartDistance, (_flyHeight+200)];
 
@@ -114,7 +114,7 @@ While {true} do {
 	if (currentWaypoint _grp >= 2) exitWith {};  //Completed Drop Waypoint
 };
 
-
+_playerMoney = 0; //Initialize and all that jazz
 if (APOC_AA_AdvancedBanking) then {
     // Let's handle the money after this tricky spot - This way players won't be charged for non-delivered goods!
     _playerMoney = _player getVariable ["ExileBank", 0];
