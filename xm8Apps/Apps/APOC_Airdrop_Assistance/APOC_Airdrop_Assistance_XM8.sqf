@@ -111,6 +111,14 @@ fn_DropCategory_Load = {
   _DropID = "";
   _DropDesc = "";
   _DropPrice  = 0;
+  
+    _playerMoney = 0;
+    if (APOC_AA_UseExileLockerFunds) then {
+        _playerMoney = player getVariable ["ExileLocker",0];
+    } else {
+       _playerMoney = player getVariable ["ExileMoney", 0];
+    };
+  
   //Load in the Drops under this category
   for "_i" from 0 to (count APOC_AA_Drops)-1 do {
     _Category = (APOC_AA_Drops select _i) select 0; //Grabs the string of the drop category ie: "Vehicles" or "Supplies" or "Lawn Gnomes"
@@ -126,6 +134,10 @@ fn_DropCategory_Load = {
 
         (_display displayCtrl 6602) lbAdd Format["%1",_Drop];
         (_display displayCtrl 6602) lbSetData [_forEachIndex,_DropID];
+        
+        if (_DropPrice > _playerMoney) then {
+            (_display displayCtrl 6602) lbSetColor [_forEachIndex,[1,0,0,1]]; //Set drop text to red if too expensive for player
+        };
 
       } forEach ((APOC_AA_Drops select _i) select 1);
     };
