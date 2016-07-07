@@ -149,14 +149,12 @@ if (APOC_AA_AdvancedBanking) then {
     //Server Side Money handling
     _newBalance = _playerMoney - _DropPrice;
     if (APOC_AA_UseExileLockerFunds) then {
-        _player setVariable ["ExileLocker", _newBalance];
+        _player setVariable ["ExileLocker", _newBalance, true];
         format["updateLocker:%1:%2", _newBalance, (getPlayerUID _player)] call ExileServer_system_database_query_fireAndForget;
     } else {
-        _player setVariable ["ExileMoney", _newBalance];
+        _player setVariable ["ExileMoney", _newBalance, true];
         format["setAccountMoney:%1:%2", _newBalance, (getPlayerUID _player)] call ExileServer_system_database_query_fireAndForget;
     };
-    //Dealing with sending network messages into the ExileClient madness (Chunks of this from base Exile client code)
-    _player call ExileServer_object_player_sendStatsUpdate;	//Yes, I know this is a gross misapplication
 };
 
 //  Now on to the fun stuff:
