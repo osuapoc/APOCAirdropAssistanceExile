@@ -6,9 +6,10 @@
 //Author: Apoc
 // https://github.com/osuapoc
 
-// Advanced Banking support. Change false to true if you run Advanced Banking on your server.
-APOC_AA_AdvancedBanking = false;
-APOC_AA_UseExileLockerFunds = false;
+
+APOC_AA_AdvancedBanking = false;		// Advanced Banking support. Change false to true if you run Advanced Banking on your server.  Not sure of 0.9.8 compatability.
+APOC_AA_UseExileLockerFunds = false;	//Removes funds from player's locker stash instead of their hand
+APOC_AA_DamageOnWhenLanded = false;		//Turn object allowDamage back on when object is on ground, instead of when in 'chute
 
 APOC_AA_coolDownTime = 60; //Expressed in sec
 

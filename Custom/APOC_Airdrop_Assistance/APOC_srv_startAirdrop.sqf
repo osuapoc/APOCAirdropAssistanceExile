@@ -209,8 +209,9 @@ WaitUntil {(((position _object) select 2) < (_flyHeight-20))};
 		_flare1= "F_40mm_Green" createVehicle getPos _object;
 		_flare1 attachto [_object,[0,0,-0.5]];
 
-		if (_DropType == "vehicle") then {_object allowDamage true;}; //Turn on damage for vehicles once they're in the 'chute.  Could move this until they hit the ground.  Admins choice.
-
+		if !(APOC_AA_DamageOnWhenLanded) then {
+			if (_DropType == "vehicle") then {_object allowDamage true;}; //Turn on damage for vehicles once they're in the 'chute.
+		};
 //Drop some flares and smokes on the ground when the object lands
 WaitUntil {((((position _object) select 2) < 1) || (isNil "_para"))};
 		detach _object;
@@ -218,3 +219,7 @@ WaitUntil {((((position _object) select 2) < 1) || (isNil "_para"))};
 		//_smoke2 attachto [_object,[0,0,-0.5]]; ////Enable this line if you want the smoke attached to the object.
 		_flare2= "F_40mm_Green" createVehicle getPos _object;
 		//_flare2 attachto [_object,[0,0,-0.5]]; //Enable this line if you want the flare attached to the object.  Pretty fun at night to watch it drive away lit up
+		if (APOC_AA_DamageOnWhenLanded) then {
+			sleep 5;	//Give it a few seconds to get all landed and such.
+			if (_DropType == "vehicle") then {_object allowDamage true;}; //Turn on damage for vehicles once they're on the ground.
+		};
