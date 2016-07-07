@@ -153,7 +153,7 @@ if (APOC_AA_AdvancedBanking) then {
         format["updateLocker:%1:%2", _newBalance, (getPlayerUID _player)] call ExileServer_system_database_query_fireAndForget;
     } else {
         _player setVariable ["ExileMoney", _newBalance, true];
-        format["setPlayerMoney:%1:%2", _newBalance, (getPlayerUID _player)] call ExileServer_system_database_query_fireAndForget;
+        format["setPlayerMoney:%1:%2", _newBalance, _player getVariable ["ExileDatabaseID", 0]] call ExileServer_system_database_query_fireAndForget;
     };
 };
 
