@@ -27,6 +27,7 @@ hint format ["Well we've made it this far! %1, %2, %3,",_player,_DropType,_DropS
         _DropDesc = _x select 0;
         _DropPrice = _x select 2;
         _DropType = _x select 3;
+        _DropRespectThreshold = _x select 4;
       }
     } forEach ((APOC_AA_Drops select _i) select 1);
 };

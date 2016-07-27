@@ -113,12 +113,14 @@ fn_DropCategory_Load = {
   _DropPrice  = 0;
   
     _playerMoney = 0;
+    _playerRespect = 0;
     if (APOC_AA_UseExileLockerFunds) then {
         _playerMoney = player getVariable ["ExileLocker",0];
     } else {
        _playerMoney = player getVariable ["ExileMoney", 0];
     };
-  
+    
+    _playerRespect = player getVariable ["ExileScore",0];
   //Load in the Drops under this category
   for "_i" from 0 to (count APOC_AA_Drops)-1 do {
     _Category = (APOC_AA_Drops select _i) select 0; //Grabs the string of the drop category ie: "Vehicles" or "Supplies" or "Lawn Gnomes"
@@ -129,15 +131,19 @@ fn_DropCategory_Load = {
         _DropDesc =  _x select 0;
         _DropID = _x select 1;
         _DropPrice = _x select 2;
+        _DropRespectThreshold = _x select 3;
 
         _Drop = format ["%1 - Cost: %2 tabs", _DropDesc, _DropPrice];
 
         (_display displayCtrl 6602) lbAdd Format["%1",_Drop];
         (_display displayCtrl 6602) lbSetData [_forEachIndex,_DropID];
         
-        if (_DropPrice > _playerMoney) then {
+        if ((_DropPrice > _playerMoney)||(_DropRespectThreshold > _playerRespect)) then {
             (_display displayCtrl 6602) lbSetColor [_forEachIndex,[1,0,0,1]]; //Set drop text to red if too expensive for player
         };
+        
+        _toolTip = format ["Respect Required: %1", _DropRespectThreshold];
+        (_display displayCtrl 6602) lbSetTooltip [_forEachIndex, _toolTip];
 
       } forEach ((APOC_AA_Drops select _i) select 1);
     };
@@ -232,7 +238,6 @@ fn_OrderDrop = {
       if ((_timeRemainingReuse) > 0) then
         {
           _NotificationText =  format["You need to wait %1 seconds before calling an airdrop again!", ceil _timeRemainingReuse];
-
           ["ErrorTitleandText",["Airdrop Error",_NotificationText]] call ExileClient_gui_toaster_addTemplateToast;
           playSound "FD_CP_Not_Clear_F";
           breakOut "APOC_Airdrop_Assistance_XM8";
@@ -241,17 +246,23 @@ fn_OrderDrop = {
       //diag_log format["AAA - Made it to line 203!, _DropPrice %1",_DropPrice];
     ////////////////////////////////////////////////////////
     _playerMoney = 0;
+    _playerRespect = 0;
     if (APOC_AA_UseExileLockerFunds) then {
         _playerMoney = player getVariable ["ExileLocker",0];
     } else {
         _playerMoney = player getVariable ["ExileMoney", 0];
     };
+    _playerRespect = player getVariable ["ExileScore", 0];
     //diag_log format["AAA - Made it to line 237!, _DropPrice %1, _playerMoney %2",_DropPrice, _playerMoney];
     if (_DropPrice > _playerMoney) exitWith
       {
-
-        _NotificationText =  format["You don't have enough money to request this airdrop!", ceil _timeRemainingReuse];
-
+        _NotificationText =  "You don't have enough money to request this airdrop!";
+        ["ErrorTitleandText",["Airdrop Error",_NotificationText]] call ExileClient_gui_toaster_addTemplateToast;
+        playSound "FD_CP_Not_Clear_F";
+      };
+    if (_DropRespectThreshold > _playerRespect) exitWith
+      {
+        _NotificationText =  "You don't have enough respect to request this airdrop!";
         ["ErrorTitleandText",["Airdrop Error",_NotificationText]] call ExileClient_gui_toaster_addTemplateToast;
         playSound "FD_CP_Not_Clear_F";
       };
@@ -263,7 +274,6 @@ fn_OrderDrop = {
     diag_log format ["AAA - Just Used Time: %1; CoolDown Set At: %2; Current Time: %3, Type %4, Selection %5",APOC_AA_lastUsedTime, APOC_AA_coolDownTime, diag_tickTime,_DropType,_DropSelection];
     // Give some feedback that the pilot has heard the call to action!
     _NotificationText = format ["Your airdrop is on its way!  ETA ~90 seconds!"]; //You could put a variable here in case you change the spawn in distance
-
     ["SuccessTitleandText",["Airdrop Success!",_NotificationText]] call ExileClient_gui_toaster_addTemplateToast;
     playSound3D ["a3\sounds_f\sfx\radio\ambient_radio17.wss",player,false,getPosASL player,1,1,25]; // Thanks Lodac (TOParma!)
     //TO THE SERVER FUNCTION!
