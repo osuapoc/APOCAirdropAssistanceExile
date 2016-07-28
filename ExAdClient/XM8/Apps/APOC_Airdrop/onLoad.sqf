@@ -26,7 +26,7 @@ _slideClass = "ExAd_APOC_Airdrop";
 _newParent = [_display,_slide,([_slideClass,"ctrlGrp"] call ExAd_fnc_getNextIDC),[_leftCol * _pW, 1 * _pH, (_leftColW + _rightCol + 6) * _pW, 16 * _pH]] call ExAd_fnc_createCtrlGrp;
 
 _idcCbDropCategories = [_slideClass,"cbDropCategories"] call ExAd_fnc_getNextIDC;
-[_display,_slide,_idcCbDropCategories,[_leftCol * _pW, 4 * _pH, _leftColW * _pW, 5 * _pH],format["[_this select 0] call fn_DropCategory_Load"],""] call ExAd_fnc_createList;
+[_display,_slide,_idcCbDropCategories,[_leftCol * _pW, 4 * _pH, _leftColW * _pW, 5 * _pH],format["[_this select 0] call fn_DropCategory_Load"],""] call ExAd_fnc_createCombo;
 
 _idcLbDropList = [_slideClass,"lbDropList"] call ExAd_fnc_getNextIDC;
 [_display,_slide,_idcLbDropList,[_leftCol * _pW, 4 * _pH, _leftColW * _pW, 5 * _pH],format["[_this select 0] call fn_DropContents_Load"],""] call ExAd_fnc_createList;
