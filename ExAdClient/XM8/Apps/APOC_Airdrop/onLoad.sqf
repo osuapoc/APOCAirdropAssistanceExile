@@ -45,11 +45,10 @@ Functions Called from the Dialog
 fn_DropCategory_Load = {
 	params ["_ctrl","_Selection","_Category","_Drop","_DropID","_DropDesc","_DropPrice","_playerMoney","_playerRespect"];
 	_display = uiNameSpace getVariable ["RscExileXM8", displayNull];
-
+	/*
 	{
-	_private["_ctrlIDC"];
 		_ctrlIDC = ctrlIDC ([_display,"ExAd_APOC_Airdrop",_x select 0] call ExAd_fnc_getAppCtrl);
-		(_x select 1) = _ctrlIDC
+		(_x select 1) = _ctrlIDC;
 
 	} forEach
 	[
@@ -58,6 +57,11 @@ fn_DropCategory_Load = {
 		["lbDropContentList", _idcLbDropContentList],
 		["btnOrderDrop", _idcBtnOrderDrop]
 	];
+	*/
+	_idcCbDropCategories = ctrlIDC ([_display,"ExAd_APOC_Airdrop","cbDropCategories"] call ExAd_fnc_getAppCtrl);
+	_idcLbDropList = ctrlIDC ([_display,"ExAd_APOC_Airdrop","lbDropList"] call ExAd_fnc_getAppCtrl);
+	_idcLbDropContentList = ctrlIDC ([_display,"ExAd_APOC_Airdrop","lbDropContentList"] call ExAd_fnc_getAppCtrl);
+	_idcBtnOrderDrop = ctrlIDC ([_display,"ExAd_APOC_Airdrop","btnOrderDrop"] call ExAd_fnc_getAppCtrl);
 
 	lbClear _idcLbDropList;			//Clear Drop List lb
 	lbClear _idcLbDropContentList;	//Clear Drop Content
@@ -114,10 +118,10 @@ fn_DropContents_Load = {
 	_ctrl = _this select 0;
 	_Selection = _ctrl lbData (lbCurSel _ctrl);
 
-		{
-	_private["_ctrlIDC"];
+	/*
+	{
 		_ctrlIDC = ctrlIDC ([_display,"ExAd_APOC_Airdrop",_x select 0] call ExAd_fnc_getAppCtrl);
-		(_x select 1) = _ctrlIDC
+		(_x select 1) = _ctrlIDC;
 
 	} forEach
 	[
@@ -126,6 +130,11 @@ fn_DropContents_Load = {
 		["lbDropContentList", _idcLbDropContentList],
 		["btnOrderDrop", _idcBtnOrderDrop]
 	];
+	*/
+	_idcCbDropCategories = ctrlIDC ([_display,"ExAd_APOC_Airdrop","cbDropCategories"] call ExAd_fnc_getAppCtrl);
+	_idcLbDropList = ctrlIDC ([_display,"ExAd_APOC_Airdrop","lbDropList"] call ExAd_fnc_getAppCtrl);
+	_idcLbDropContentList = ctrlIDC ([_display,"ExAd_APOC_Airdrop","lbDropContentList"] call ExAd_fnc_getAppCtrl);
+	_idcBtnOrderDrop = ctrlIDC ([_display,"ExAd_APOC_Airdrop","btnOrderDrop"] call ExAd_fnc_getAppCtrl);
 
 	lbClear _idcLbDropContentList; //Clear Drop Content lb
 
@@ -167,10 +176,10 @@ fn_OrderDrop = {
   //diag_log format["AAA - fn_OrderDrop Called"];
   _display = uiNameSpace getVariable ["RscExileXM8", displayNull];
 
-  {
-		_private["_ctrlIDC"];
+	/*
+	{
 		_ctrlIDC = ctrlIDC ([_display,"ExAd_APOC_Airdrop",_x select 0] call ExAd_fnc_getAppCtrl);
-		(_x select 1) = _ctrlIDC
+		(_x select 1) = _ctrlIDC;
 
 	} forEach
 	[
@@ -179,6 +188,11 @@ fn_OrderDrop = {
 		["lbDropContentList", _idcLbDropContentList],
 		["btnOrderDrop", _idcBtnOrderDrop]
 	];
+	*/
+	_idcCbDropCategories = ctrlIDC ([_display,"ExAd_APOC_Airdrop","cbDropCategories"] call ExAd_fnc_getAppCtrl);
+	_idcLbDropList = ctrlIDC ([_display,"ExAd_APOC_Airdrop","lbDropList"] call ExAd_fnc_getAppCtrl);
+	_idcLbDropContentList = ctrlIDC ([_display,"ExAd_APOC_Airdrop","lbDropContentList"] call ExAd_fnc_getAppCtrl);
+	_idcBtnOrderDrop = ctrlIDC ([_display,"ExAd_APOC_Airdrop","btnOrderDrop"] call ExAd_fnc_getAppCtrl);
 
   _ctrl = (_display displayCtrl _idcCbDropCategories);
   _CategorySelection = _ctrl lbData (lbCurSel _ctrl);
