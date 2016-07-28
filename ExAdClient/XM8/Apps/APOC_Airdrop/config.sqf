@@ -8,7 +8,9 @@ scriptName "config.sqf";
 	Author: Bill Springer <Apoc@MayhemServers.com>
 	Description: XM8 App config for ExAd APOC Airdrop Port
 --------------------------------------------------------------------*/
+#include "functions.sqf"; //Dialog functions for the client
 
+/* ************************************ */
 
 APOC_AA_AdvancedBanking = false;		// Advanced Banking support. Change false to true if you run Advanced Banking on your server.  Not sure of 0.9.8 compatability.
 APOC_AA_UseExileLockerFunds = false;	//Removes funds from player's locker stash instead of their hand
