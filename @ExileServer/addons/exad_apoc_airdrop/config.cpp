@@ -9,7 +9,7 @@
 --------------------------------------------------------------------*/
 
 class CfgPatches {
-	class ExAd_VG {
+	class exad_apoc_airdrop {
 		requiredVersion = 0.1;
 		requiredAddons[] = {"ExAd_Core"};
 	};
