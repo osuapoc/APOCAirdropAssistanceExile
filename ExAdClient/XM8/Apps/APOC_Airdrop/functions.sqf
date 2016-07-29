@@ -64,7 +64,7 @@ fn_DropCategory_Load = {
 	    _DropDesc =  _x select 0;
 	    _DropID = _x select 1;
 	    _DropPrice = _x select 2;
-	    _DropRespectThreshold = _x select 3;
+	    _DropRespectThreshold = _x select 4;
 
 	    _Drop = format ["%1 - Cost: %2 tabs", _DropDesc, _DropPrice];
 
