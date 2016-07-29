@@ -64,7 +64,12 @@ fn_DropCategory_Load = {
 	    _DropDesc =  _x select 0;
 	    _DropID = _x select 1;
 	    _DropPrice = _x select 2;
-	    _DropRespectThreshold = _x select 4;
+	    if (count _x > 3) then {
+	    	_DropRespectThreshold = _x select 4;
+	    } else {
+	    	_DropRespectThreshold = 0;
+	    };
+
 
 	    _Drop = format ["%1 - Cost: %2 tabs", _DropDesc, _DropPrice];
 
@@ -189,6 +194,11 @@ fn_OrderDrop = {
             _DropDesc = _x select 0;
             _DropPrice = _x select 2;
             _DropType = _x select 3;
+		    if (count _x > 3) then {
+		    	_DropRespectThreshold = _x select 4;
+		    } else {
+		    	_DropRespectThreshold = 0;
+		    };
 
           };
         } forEach ((APOC_AA_Drops select _i) select 1);
