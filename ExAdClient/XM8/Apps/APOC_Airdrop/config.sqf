@@ -30,7 +30,7 @@ APOC_AA_Drops =[
 //Also, presently, these are NON-Persistant vehicles.  Meaning that they will not last over a restart.  Keep that in mind with prices.  Later updates I'll set that up, with pin code entry.
 	["Vehicles",
 		[
-			["Quadbike", 		"Exile_Bike_QuadBike_Black", 			10000, 	"vehicle", 1000],
+			["Quadbike", 		"Exile_Bike_QuadBike_Black", 		10000, 	"vehicle", 1000],
 			["Offroad", 		"Exile_Car_Offroad_Red",			20000, 	"vehicle", 1000],
 			["Strider", 		"Exile_Car_Strider", 				30000, 	"vehicle", 1000]
 		]
