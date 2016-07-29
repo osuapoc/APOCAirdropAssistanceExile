@@ -29,10 +29,10 @@ _idcCbDropCategories = [_slideClass,"cbDropCategories"] call ExAd_fnc_getNextIDC
 [_display,_slide,_idcCbDropCategories,[_leftCol * _pW, 4 * _pH, _leftColW * _pW, 1 * _pH],format["[_this select 0] call fn_DropCategory_Load"],""] call ExAd_fnc_createCombo;
 
 _idcLbDropList = [_slideClass,"lbDropList"] call ExAd_fnc_getNextIDC;
-[_display,_slide,_idcLbDropList,[_leftCol * _pW, 6 * _pH, _leftColW * _pW, 10 * _pH],format["[_this select 0] call fn_DropContents_Load"],""] call ExAd_fnc_createList;
+[_display,_slide,_idcLbDropList,[_leftCol * _pW, 6 * _pH, _leftColW * _pW, 5 * _pH],format["[_this select 0] call fn_DropContents_Load"],""] call ExAd_fnc_createList;
 
 _idcLbDropContentList = [_slideClass,"lbDropContentList"] call ExAd_fnc_getNextIDC;
-[_display,_slide,_idcLbDropContentList,[_rightCol * _pW, 6 * _pH, _rightColW * _pW, 5 * _pH],format[""],""] call ExAd_fnc_createList;
+[_display,_slide,_idcLbDropContentList,[_rightCol * _pW, 6 * _pH, _rightColW * _pW, 10 * _pH],format[""],""] call ExAd_fnc_createList;
 
 _idcBtnOrderDrop = [_slideClass, "btnOrderDrop"] call ExAd_fnc_getNextIDC;
 [_display,_slide,_idcBtnOrderDrop,[_leftCol*_pW, 17*_pH, _leftColW*_pW, 1 *_pH],format["_this call fn_OrderDrop"],"Order Drop",""] call ExAd_fnc_createButton;
