@@ -36,7 +36,7 @@ _items = _this select 1;	//_dropItems from serv_fillAirdrop
 
 						if (_magsQty > 0) then
 						{
-							_mag = ((getArray (configFile >> "CfgWeapons" >> _randomClass >> "magazines")) select 0) call getBallMagazine;
+							_mag = ((getArray (configFile >> "CfgWeapons" >> _randomClass >> "magazines")) select 0) call ExAdServer_fnc_getBallMagazine;
 							_vehicle addMagazineCargoGlobal [_mag, _magsQty];
 						};
 					};
@@ -47,7 +47,7 @@ _items = _this select 1;	//_dropItems from serv_fillAirdrop
 
 					if (_magsQty > 0) then
 					{
-						_mag = ((getArray (configFile >> "CfgWeapons" >> _class >> "magazines")) select 0) call getBallMagazine;
+						_mag = ((getArray (configFile >> "CfgWeapons" >> _class >> "magazines")) select 0) call ExAdServer_fnc_getBallMagazine;
 						_vehicle addMagazineCargoGlobal [_mag, _quantity * _magsQty];
 					};
 				};

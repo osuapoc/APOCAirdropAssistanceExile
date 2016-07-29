@@ -16,7 +16,7 @@ if (isClass _magCfg) then
 	// Fix case
 	_mag = configName (_magCfg);
 
-	while {["_Tracer", configName (_magCfg)] call fn_findString != -1} do
+	while {["_Tracer", configName (_magCfg)] call ExAdServer_fnc_findString != -1} do //Modified by Apoc for Exile, ExAd Addon
 	{
 		_magCfg = inheritsFrom _magCfg;
 	};

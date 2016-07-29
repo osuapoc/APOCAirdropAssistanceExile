@@ -23,6 +23,7 @@ class CfgFunctions {
 			class findString {};
 			class getBallMagazine {};
 			class fillAirdrop {};
+			class processItems {};
 		};
 	};
 };

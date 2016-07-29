@@ -91,7 +91,7 @@ _object = switch (_DropType) do {
 		_objectSpawnPos = [(_spos select 0), (_spos select 1), (_spos select 2) - 5];
 		_object = createVehicle ["Exile_Container_SupplyBox", _objectSpawnPos, [], 0, "None"];
 
-		[_object, _DropSelection] call fillAirdrop;
+		[_object, _DropSelection] call ExAdServer_fnc_fillAirdrop;
 		_object attachTo [_heli, [0,0,-5]]; //Attach Object to the heli
 		_object
 	};
@@ -99,7 +99,7 @@ _object = switch (_DropType) do {
 		_objectSpawnPos = [(_spos select 0), (_spos select 1), (_spos select 2) - 5];
 		_object = createVehicle ["Exile_Container_SupplyBox", _objectSpawnPos, [], 0, "None"];
 
-		[_object, "airdrop_FoodSmall"] call fillAirdrop;
+		[_object, "airdrop_FoodSmall"] call ExAdServer_fnc_fillAirdrop;
 		_object attachTo [_heli, [0,0,-5]]; //Attach Object to the heli
 		_object
 		};

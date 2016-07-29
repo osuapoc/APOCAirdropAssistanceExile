@@ -31,4 +31,4 @@ clearItemCargoGlobal _object;
   };
 
 //Call the filling of the crate function
-[_object, _dropItems] call processItems;
+[_object, _dropItems] call ExAdServer_fnc_processItems;
