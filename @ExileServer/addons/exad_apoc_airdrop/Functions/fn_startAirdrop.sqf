@@ -13,7 +13,7 @@ if !(isDedicated) exitWith{};
 private ["_DropType","_DropSelection","_player", "_DropDesc","_DropPrice","_DropType","_object","_playerMoney"]; //Variables coming from APOC_Airdrop_Assistance_XM8.sqf
 _DropType 			 	= _this select 0;
 _DropSelection		 	= _this select 1;
-_player 				= _this select 2;
+_player 				= objectfromNetID (_this select 2);
 
 diag_log format ["SERVER - Apoc's Airdrop Assistance - Player: %1, Drop Type: %2, Selection: %3",name _player,_DropType,_DropSelection];
 hint format ["Well we've made it this far! %1, %2, %3,",_player,_DropType,_DropSelection];
