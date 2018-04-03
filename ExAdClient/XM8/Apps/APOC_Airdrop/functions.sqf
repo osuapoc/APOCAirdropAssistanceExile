@@ -44,6 +44,7 @@ fn_DropCategory_Load = {
 	_DropID = "";
 	_DropDesc = "";
 	_DropPrice  = 0;
+	_DropRespectThreshold = 0;
 
 	_playerMoney = 0;
 	_playerRespect = 0;
@@ -179,6 +180,7 @@ fn_OrderDrop = {
   _DropID = "";
   _DropDesc = "";
   _DropPrice  = "";
+  _DropRespectThreshold = "";
 
   //Very convoluted system to extract the price from the arrays
     for "_i" from 0 to (count APOC_AA_Drops)-1 do {
