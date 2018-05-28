@@ -11,7 +11,18 @@
 /* ************************************************************************
 Functions Called from the Dialog
 ************************************************************************ */
+fn_createCombo = {
+	//This was originally written by Janski in ExAd core functions
+	params ["_display","_parent","_idc","_position","_actionOnSelChanged","_tooltip","_ctrl"];
 
+	_ctrl = _display ctrlCreate ["RscCombo",_idc,_parent];
+	_ctrl ctrlSetPosition _position;
+	_ctrl ctrlSetEventHandler ["LBSelChanged",_actionOnSelChanged];
+	_ctrl ctrlSetTooltip _tooltip;
+	_ctrl ctrlCommit 0;
+
+	_ctrl
+};
 fn_DropCategory_Load = {
 	params ["_ctrl","_Selection","_Category","_Drop","_DropID","_DropDesc","_DropPrice","_playerMoney","_playerRespect"];
 	_display = uiNameSpace getVariable ["RscExileXM8", displayNull];
